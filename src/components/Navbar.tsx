@@ -49,7 +49,7 @@ export default function Navbar() {
               </span>
             )}
           </Link>
-          <Link to="/admin" className="hover:text-gold-light transition-colors">
+          <Link to="/login" className="hover:text-gold-light transition-colors">
             <User size={20} strokeWidth={1.5} />
           </Link>
           <button onClick={() => setIsOpen(!isOpen)} className="md:hidden">
