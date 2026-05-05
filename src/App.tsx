@@ -10,6 +10,7 @@ import Admin from './pages/Admin';
 import ProductDetail from './pages/ProductDetail';
 import Wishlist from './pages/Wishlist';
 import { WishlistProvider } from './context/WishlistContext';
+import LoginPage from './pages/LoginPage';
 
 const router = createBrowserRouter([
   {
@@ -21,6 +22,7 @@ const router = createBrowserRouter([
       { path: 'story', element: <Story /> },
       { path: 'reviews', element: <Reviews /> },
       { path: 'contact', element: <Contact /> },
+      {path: 'login', element: <LoginPage />},
       { path: 'admin', element: <Admin /> },
       { path: 'product/:id', element: <ProductDetail /> },
       { path: 'wishlist', element: <Wishlist /> },

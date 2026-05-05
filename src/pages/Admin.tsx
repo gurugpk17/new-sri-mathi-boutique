@@ -73,7 +73,7 @@ export default function Admin() {
         {/* Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
           <div className="space-y-2">
-            <h1 className="text-4xl md:text-5xl text-white font-serif italic">Atelier Dashboard</h1>
+            <h1 className="text-4xl md:text-5xl text-white font-serif italic">Admin Dashboard</h1>
             <p className="text-gray-500 font-accent text-sm tracking-widest uppercase">Executive Management Overview</p>
           </div>
           <div className="flex gap-4">
