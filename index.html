@@ -3,7 +3,18 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>My Google AI Studio App</title>
+    <!-- Provide a small import map shim so importing 
+         '/src/assets/logo.png?import' with a named export 'logo' works
+         in modules that expect `import { logo } from '/src/assets/logo.png?import'`. -->
+    <script type="importmap">
+    {
+      "imports": {
+        "/src/assets/logo2.png?import": "data:text/javascript,export const logo='/src/assets/logo2.png';"
+      }
+    }
+    </script>
+    <link rel="icon" href="/src/assets/logo2.png" />
+    <title>Sri Mathi Boutique</title>
   </head>
   <body>
     <div id="root"></div>

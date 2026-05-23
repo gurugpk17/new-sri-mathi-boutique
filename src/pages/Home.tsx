@@ -159,7 +159,7 @@ export default function Home() {
           </div>
           <div>
             <a 
-              href="https://wa.me/919000000000" 
+              href="https://wa.me/919786316017" 
               className="inline-flex items-center gap-4 px-10 py-5 bg-gold text-luxury-bg font-accent font-bold uppercase tracking-widest hover:bg-gold-light transition-all shadow-xl shadow-gold/10"
             >
               <PhoneCall size={20} />

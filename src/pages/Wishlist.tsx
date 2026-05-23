@@ -10,7 +10,7 @@ export default function Wishlist() {
   const handleBulkInquiry = () => {
     const items = wishlist.map(p => p.title).join(', ');
     const message = `Hello Sri Mathi Boutique, I'm interested in the following masterpieces: ${items}. Please provide more details.`;
-    window.open(`https://wa.me/919000000000?text=${encodeURIComponent(message)}`, '_blank');
+    window.open(`https://wa.me/919786316017?text=${encodeURIComponent(message)}`, '_blank');
   };
 
   if (wishlist.length === 0) {

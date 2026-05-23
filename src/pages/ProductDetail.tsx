@@ -16,13 +16,20 @@ export default function ProductDetail() {
   const handleInquiry = () => {
     if (!product) return;
     const message = `Hello, I'm interested in the ${product.title} from your Couture collection.`;
-    window.open(`https://wa.me/${CONFIG.CONTACT_PHONE.replace(/\s+/g, '')}?text=${encodeURIComponent(message)}`, '_blank');
+    window.open(`https://wa.me/919786316017, '')}?text=${encodeURIComponent(message)}`, '_blank');
   };
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const { addToWishlist, removeFromWishlist, isInWishlist } = useWishlist();
 
   const [recommendations, setRecommendations] = useState<Product[]>([]);
+
+  const [aiData, setAiData] = useState<{
+  title: string;
+  description: string;
+} | null>(null);
+
+const [aiLoading, setAiLoading] = useState(false);
 
   useEffect(() => {
     const loadData = async () => {
@@ -34,7 +41,36 @@ export default function ProductDetail() {
           api.getProducts()
         ]);
         setProduct(productData);
-        setRecommendations(allProducts.filter(p => p.id !== id).slice(0, 3));
+
+setRecommendations(
+  allProducts.filter((p) => p.id !== id).slice(0, 3)
+);
+
+/* AI DESCRIPTION */
+
+if (productData.images?.length > 0) {
+  setAiLoading(true);
+
+  try {
+    const response = await fetch("/api/generate-description", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        imageUrl: productData.images[0],
+      }),
+    });
+
+    const aiResponse = await response.json();
+
+    setAiData(aiResponse);
+  } catch (error) {
+    console.log("AI error:", error);
+  } finally {
+    setAiLoading(false);
+  }
+}
       } catch (err) {
         setError('Masterpiece could not be found');
       } finally {
@@ -118,14 +154,26 @@ export default function ProductDetail() {
             <div className="gradient-divider w-32" />
           </div>
 
-          <div className="space-y-6">
-            <p className="text-xl text-gray-300 italic font-serif leading-relaxed">
-              {product.description}
-            </p>
-            <p className="text-gray-400 font-accent leading-relaxed">
-              {product.longDescription}
-            </p>
-          </div>
+<div className="space-y-6">
+  {aiLoading ? (
+    <div className="flex items-center gap-3 text-gold">
+      <Loader2 className="animate-spin" size={18} />
+      <span className="font-accent text-xs uppercase tracking-widest">
+        AI analyzing embroidery...
+      </span>
+    </div>
+  ) : (
+    <>
+      <p className="text-xl text-gray-300 italic font-serif leading-relaxed">
+        {aiData?.title || product.title}
+      </p>
+
+      <p className="text-gray-400 font-accent leading-relaxed">
+        {aiData?.description || product.description}
+      </p>
+    </>
+  )}
+</div>
 
           <div className="space-y-6">
             <h3 className="font-accent text-xs uppercase tracking-widest text-gold">Masterpiece Features</h3>

@@ -1,34 +1,48 @@
-import { Product } from '../data/products';
-import { CONFIG } from '../config';
-
-export interface Review {
-  id: string;
-  name: string;
-  location: string;
-  text: string;
-  image?: string;
-  rating?: number;
-  featured: boolean;
-}
-
-const API_BASE = CONFIG.API_BASE_URL;
+const API_BASE = "http://localhost:3000";
 
 export const api = {
-  async getProducts(): Promise<Product[]> {
-    const res = await fetch(`${API_BASE}/products`);
-    if (!res.ok) throw new Error('Failed to fetch products');
+  getProducts: async () => {
+    const res = await fetch(`${API_BASE}/api/products`);
+
+    if (!res.ok) {
+      throw new Error("Failed to fetch products");
+    }
+
     return res.json();
   },
 
-  async getProduct(id: string): Promise<Product> {
-    const res = await fetch(`${API_BASE}/products/${id}`);
-    if (!res.ok) throw new Error('Failed to fetch product');
+  getProduct: async (id: string) => {
+    const res = await fetch(
+      `${API_BASE}/api/products/${id}`
+    );
+
+    if (!res.ok) {
+      throw new Error("Failed to fetch product");
+    }
+
     return res.json();
   },
 
-  async getReviews(): Promise<Review[]> {
-    const res = await fetch(`${API_BASE}/reviews`);
-    if (!res.ok) throw new Error('Failed to fetch reviews');
+  generateDescription: async (imageUrl: string) => {
+    const res = await fetch(
+      `${API_BASE}/api/generate-description`,
+      {
+        method: "POST",
+
+        headers: {
+          "Content-Type": "application/json",
+        },
+
+        body: JSON.stringify({
+          imageUrl,
+        }),
+      }
+    );
+
+    if (!res.ok) {
+      throw new Error("Failed to generate AI description");
+    }
+
     return res.json();
-  }
+  },
 };

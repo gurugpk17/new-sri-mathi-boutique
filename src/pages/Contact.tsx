@@ -1,12 +1,14 @@
 import React from 'react';
 import { motion } from 'motion/react';
 import { Quote, Send, Phone, Mail, Instagram, Facebook, MapPin } from 'lucide-react';
+import logo2 from '../assets/logo.png';
 
 export default function Contact() {
   return (
     <main className="pt-40 pb-32 luxury-pattern overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 md:px-12">
-        <header className="mb-20">
+        <div className="mb-20 flex items-start justify-between gap-4">
+        <header className="mb-20 flex-1">
           <motion.h1 
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
@@ -19,7 +21,10 @@ export default function Contact() {
             Whether seeking a bespoke bridal ensemble or exploring our heritage collections, our consultants are here to guide your journey through Indian craftsmanship.
           </p>
         </header>
-
+        <header className="flex items-center gap-4">
+          <img src={logo2} alt="sri mathi boutique" className="w-50 opacity-80 hover:opacity-100 transition-opacity" />
+        </header>
+    </div>
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
           {/* Form */}
           <motion.div 
@@ -46,7 +51,7 @@ export default function Contact() {
               </div>
               <div className="space-y-2">
                 <label className="font-accent text-[10px] uppercase tracking-widest text-gold/60">Service Category</label>
-                <select className="w-full bg-transparent border-b border-white/10 focus:border-gold py-3 outline-none font-accent transition-colors appearance-none">
+                <select className="w-full bg-neutral-900 text-white border-b border-white/10 focus:border-gold py-3 outline-none font-accent transition-colors appearance-none">
                   <option>Bespoke Bridal Wear</option>
                   <option>Heritage Silk Collection</option>
                   <option>Embroidery Restoration</option>
@@ -68,10 +73,10 @@ export default function Contact() {
           <div className="lg:col-span-5 space-y-16">
             <div className="space-y-10">
               <div>
-                <h3 className="font-accent text-[10px] text-gold uppercase tracking-[0.3em] mb-4">The Boutique</h3>
+                <h3 className="font-accent text-[10px] text-gold uppercase tracking-[0.3em] mb-4">Sri Mathi Boutique</h3>
                 <p className="text-3xl font-serif leading-tight italic">
-                  No. 42 Heritage Lane,<br />
-                  Near Old Bus Stand, Dharmapuri,<br />
+                  weevers colony<br />
+                  Near ammu mess, Dharmapuri,<br />
                   Tamil Nadu - 636701
                 </p>
               </div>
@@ -81,38 +86,46 @@ export default function Contact() {
                   <div className="w-10 h-10 rounded-full border border-gold/20 flex items-center justify-center text-gold group-hover:bg-gold group-hover:text-luxury-bg transition-all duration-500">
                     <Phone size={18} />
                   </div>
-                  <span className="text-lg font-accent">+91 98765 43210</span>
+                  <span className="text-lg font-accent">+91 9245297151</span>
                 </div>
                 <div className="flex items-center gap-4 group">
                   <div className="w-10 h-10 rounded-full border border-gold/20 flex items-center justify-center text-gold group-hover:bg-gold group-hover:text-luxury-bg transition-all duration-500">
                     <Mail size={18} />
                   </div>
-                  <span className="text-lg font-accent">atelier@srimathi.com</span>
+                  <span className="text-lg font-accent">srimathiembroidary@gmail.com</span>
                 </div>
               </div>
 
               <div>
                 <h3 className="font-accent text-[10px] text-gold uppercase tracking-[0.3em] mb-4">Follow Us</h3>
                 <div className="flex gap-8">
-                  <a href="#" className="font-accent text-xs hover:text-gold transition-colors flex items-center gap-2"><Instagram size={14}/> Instagram</a>
-                  <a href="#" className="font-accent text-xs hover:text-gold transition-colors flex items-center gap-2"><Facebook size={14}/> Facebook</a>
+                  <a href="https://www.instagram.com/sri_mathi_aari_embroidery?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" className="font-accent text-xs hover:text-gold transition-colors flex items-center gap-2"><Instagram size={14}/> Instagram</a>
+                  <a href="https://www.facebook.com/profile.php?id=61571478170637" className="font-accent text-xs hover:text-gold transition-colors flex items-center gap-2"><Facebook size={14}/> Facebook</a>
                 </div>
               </div>
             </div>
 
             {/* Map Placeholder */}
-            <div className="relative group grayscale hover:grayscale-0 transition-all duration-1000 border border-gold/10">
+            <a
+              href="https://maps.app.goo.gl/w4F4VUWkb6Wss2Jz9"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="relative group grayscale hover:grayscale-0 transition-all duration-1000 border border-gold/10 block"
+              aria-label="Open location in Google Maps"
+            >
               <img 
                 src="https://lh3.googleusercontent.com/aida-public/AB6AXuDyBPnzRxIqHYKdm-3eZ8npTUavvkZFJCclm7TsWRhaiLLVSsB94WCzeD4sAzPHrTXNx1dLW0aOuVNcY6aKYBPM2hj-mc-MGOxmNmSlub_yCIgRM-Tfb3-JtXdqqomTCf0JNB_OfOv4RlqSE1mWARt8XnHAGvs0Y-hDcW2Y190wBdJKl2HIWRGkcRPzqcs2y0f78JpQG7Xr5U16ZaKipUiSMHZ1ilvg5wGvuPGoLKmPC3pe9jooz5A_DFRVRy70Kja6tZRIHXxcgsE" 
                 alt="Map"
                 className="w-full aspect-video object-cover opacity-60"
               />
               <div className="absolute inset-0 bg-gold/5 pointer-events-none" />
-              <div className="absolute bottom-4 left-4 bg-neutral-950/80 backdrop-blur-md px-4 py-2 border border-gold/20 flex items-center gap-2">
+              <div
+                className="absolute bottom-4 left-4 bg-neutral-950/80 backdrop-blur-md px-4 py-2 border border-gold/20 flex items-center gap-2 group-hover:bg-gold/10 transition-colors"
+              >
                 <MapPin size={12} className="text-gold" />
-                <span className="font-accent text-[10px] text-gold tracking-widest uppercase">Atelier Location: Dharmapuri</span>
+                <span className="font-accent text-[10px] text-gold tracking-widest uppercase">Location: Dharmapuri</span>
               </div>
-            </div>
+            </a>
           </div>
         </div>
       </div>
