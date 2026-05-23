@@ -1,8 +1,7 @@
-const API_BASE = "";
 
 export const api = {
   getProducts: async () => {
-    const res = await fetch(`${API_BASE}/api/products`);
+    const res = await fetch(`/api/products`);
 
     if (!res.ok) {
       throw new Error("Failed to fetch products");
@@ -12,9 +11,7 @@ export const api = {
   },
 
   getProduct: async (id: string) => {
-    const res = await fetch(
-      `${API_BASE}/api/products/${id}`
-    );
+    const res = await fetch(`/api/products/${id}`);
 
     if (!res.ok) {
       throw new Error("Failed to fetch product");
@@ -25,7 +22,7 @@ export const api = {
 
   generateDescription: async (imageUrl: string) => {
     const res = await fetch(
-      `${API_BASE}/api/generate-description`,
+      `/api/generate-description`,
       {
         method: "POST",
 
