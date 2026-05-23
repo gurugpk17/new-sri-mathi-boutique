@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { motion } from 'motion/react';
+import { motion } from 'framer-motion';
 import { Product } from '../data/products';
 import { ArrowLeft, MessageSquare, ShieldCheck, Zap, Heart, Loader2, AlertCircle } from 'lucide-react';
 import { useWishlist } from '../context/WishlistContext';

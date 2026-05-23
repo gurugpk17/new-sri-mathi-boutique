@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { motion } from 'motion/react';
+import { motion } from 'framer-motion';
 import { Quote, Star, Loader2, AlertCircle } from 'lucide-react';
 import { api, Review } from '../services/api';
 

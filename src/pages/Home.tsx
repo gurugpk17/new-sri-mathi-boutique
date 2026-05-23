@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { motion } from 'motion/react';
+import { motion } from 'framer-motion';
 import { ArrowRight, Star, PenTool, Sparkles, PhoneCall, Loader2 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { api } from '../services/api';

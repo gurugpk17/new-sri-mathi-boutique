@@ -1,5 +1,5 @@
 import React from 'react';
-import { motion } from 'motion/react';
+import { motion } from 'framer-motion';
 import { Quote, Send, Phone, Mail, Instagram, Facebook, MapPin } from 'lucide-react';
 import logo2 from '../assets/logo.png';
 
