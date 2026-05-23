@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { User, Lock, ArrowRight, Loader2, Check, Shield, MapPin, ExternalLink } from 'lucide-react';
 
 export default function LoginPage() {

@@ -1,5 +1,5 @@
 import React from 'react';
-import { motion, AnimatePresence } from 'motion/react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { useWishlist } from '../context/WishlistContext';
 import { Link } from 'react-router-dom';
 import { Trash2, MessageSquare, ArrowRight, ShoppingBag } from 'lucide-react';
