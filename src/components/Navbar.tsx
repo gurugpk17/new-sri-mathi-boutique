@@ -3,7 +3,7 @@ import { NavLink, Link } from 'react-router-dom';
 import { Heart, User, Menu, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useWishlist } from '../context/WishlistContext';
-import {logo} from "../assets/logo2.png";
+import logo from "../assets/logo2.png";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = React.useState(false);
