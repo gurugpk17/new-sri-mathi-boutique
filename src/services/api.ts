@@ -11,7 +11,7 @@ export const api = {
   },
 
   getProduct: async (id: string) => {
-    const res = await fetch(`/api/products/${id}`);
+    const res = await fetch(`/api/products?id=${id}`);
 
     if (!res.ok) {
       throw new Error("Failed to fetch product");

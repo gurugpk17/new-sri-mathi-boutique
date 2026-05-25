@@ -33,6 +33,8 @@ export default async function handler(
   res: VercelResponse
 ) {
   try {
+    const { id } = req.query;
+
     const { data: folders, error } = await supabase.storage
       .from("sample")
       .list("");
@@ -82,14 +84,28 @@ export default async function handler(
       })
     );
 
-    res.status(200).json(products);
-  }
-    catch (err: any) {
-  console.error(err);
+    // SINGLE PRODUCT
+    if (id && typeof id === "string") {
+      const product = products.find((p) => p.id === id);
 
-  return res.status(500).json({
-    message: err?.message,
-    stack: err?.stack,
-  });
-}
+      if (!product) {
+        return res.status(404).json({
+          error: "Product not found",
+        });
+      }
+
+      return res.status(200).json(product);
+    }
+
+    // ALL PRODUCTS
+    return res.status(200).json(products);
+
+  } catch (err: any) {
+    console.error(err);
+
+    return res.status(500).json({
+      message: err?.message,
+      stack: err?.stack,
+    });
+  }
 }
