@@ -11,6 +11,8 @@ export default function Reviews() {
   const [name, setName] = useState("");
   const [location, setLocation] = useState("");
   const [text, setText] = useState("");
+  const [visibleReviews, setVisibleReviews] = useState(6);
+
   useEffect(() => {
     const loadReviews = async () => {
       try {
@@ -46,6 +48,10 @@ export default function Reviews() {
     }
   };
 
+  useEffect(() => {
+    setVisibleReviews(6);
+  }, [reviews.length]);
+
   if (loading) {
     return (
       <div className="pt-40 min-h-screen flex flex-col items-center justify-center text-gold space-y-4">
@@ -60,6 +66,7 @@ export default function Reviews() {
   const featured = reviews?.find((r) => r?.featured);
 
   const regular = reviews?.filter((r) => r && !r.featured);
+  const visibleRegular = regular.slice(0, visibleReviews);
 
   return (
     <main className="pt-40 pb-32 embroidery-pattern">
@@ -69,7 +76,7 @@ export default function Reviews() {
           Client Testimonials
         </span>
         <h1 className="text-5xl md:text-7xl font-serif mb-8 italic text-white">
-          Kind Words from our Brides
+          Kind Words from our Cherished Coustomers
         </h1>
         <div className="gradient-divider w-64 mx-auto" />
       </section>
@@ -112,8 +119,14 @@ export default function Reviews() {
 
         {/* Quotes Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {regular.map((rev, i) => (
-            <React.Fragment key={rev.id}>
+          {visibleRegular.map((rev, i) => (
+            <motion.div
+              key={rev.id}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              viewport={{ once: true }}
+            >
               <div className="bg-neutral-900 border border-gold/10 p-12 flex flex-col justify-between">
                 <div>
                   <Star size={20} className="text-gold mb-8" />
@@ -121,6 +134,7 @@ export default function Reviews() {
                     "{rev.text}"
                   </p>
                 </div>
+
                 <div className="mt-12 text-left">
                   <p className="font-accent text-gold text-xs font-bold uppercase tracking-widest">
                     {rev.name}
@@ -130,6 +144,7 @@ export default function Reviews() {
                   </p>
                 </div>
               </div>
+
               {i === 0 && (
                 <div className="aspect-[4/5] md:aspect-auto">
                   <img
@@ -139,9 +154,22 @@ export default function Reviews() {
                   />
                 </div>
               )}
-            </React.Fragment>
+            </motion.div>
           ))}
         </div>
+
+        {visibleReviews < regular.length && (
+          <div className="text-center mt-10">
+            <motion.button
+              onClick={() => setVisibleReviews((p) => p + 3)}
+              className="px-8 py-3 border border-gold text-gold uppercase tracking-widest hover:bg-gold hover:text-black transition"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              Show More Reviews
+            </motion.button>
+          </div>
+        )}
       </section>
 
       <section className="max-w-3xl mx-auto px-6 mt-32">
