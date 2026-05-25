@@ -3,17 +3,17 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- Provide a small import map shim so importing 
-         '/src/assets/logo.png?import' with a named export 'logo' works
-         in modules that expect `import { logo } from '/src/assets/logo.png?import'`. -->
+
     <script type="importmap">
     {
       "imports": {
-        "/src/assets/logo2.png?import": "data:text/javascript,export const logo='/src/assets/logo2.png';"
+        "/icons/logo2.png?import": "data:text/javascript,export const logo='/icons/logo2.png';"
       }
     }
     </script>
-    <link rel="icon" href="/src/assets/logo2.png" />
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="theme-color" content="#5B5EA6" />
+    <link rel="icon" href="/icons/logo2.png" />
     <title>Sri Mathi Boutique</title>
   </head>
   <body>

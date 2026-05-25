@@ -3,7 +3,6 @@ import { NavLink, Link } from 'react-router-dom';
 import { Heart, User, Menu, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useWishlist } from '../context/WishlistContext';
-import logo from '../assets/logo2.png?url';
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = React.useState(false);
@@ -21,7 +20,7 @@ export default function Navbar() {
     <nav className="fixed top-0 w-full z-50 bg-neutral-950/80 backdrop-blur-md border-b border-gold/10 shadow-[0_4px_20px_rgba(212,175,55,0.05)]">
       <div className="max-w-7xl mx-auto px-4 md:px-12 py-4 md:py-6 flex justify-between items-center gap-4">
         <Link to="/" className="text-lg md:text-2xl font-serif tracking-[0.2em] md:tracking-[0.3em] text-gold hover:text-gold-light transition-colors uppercase flex items-center gap-1 md:gap-2 flex-shrink-0">
-          <img src={logo} alt="Sri Mathi Logo" className="h-8 md:h-10" />
+          <img src="/icons/logo2.png" alt="Sri Mathi Logo" className="h-8 md:h-10" />
           <h5 className="hidden sm:block text-sm md:text-base">Sri Mathi</h5>
         </Link>
 

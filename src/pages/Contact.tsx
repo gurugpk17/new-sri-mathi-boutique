@@ -1,7 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Quote, Send, Phone, Mail, Instagram, Facebook, MapPin } from 'lucide-react';
-import logo2 from '../assets/logo.png';
 
 export default function Contact() {
   return (
@@ -22,7 +21,7 @@ export default function Contact() {
           </p>
         </header>
         <header className="flex items-center gap-4">
-          <img src={logo2} alt="sri mathi boutique" className="w-50 opacity-80 hover:opacity-100 transition-opacity" />
+          <img src="/icons/logo.png" alt="sri mathi boutique" className="w-50 opacity-80 hover:opacity-100 transition-opacity" />
         </header>
     </div>
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">

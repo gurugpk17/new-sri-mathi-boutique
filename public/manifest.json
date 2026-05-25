@@ -1,0 +1,21 @@
+{
+    "name":"Sri Mathi Boutique",
+    "short_name":"sriMathi",
+    "start_url":"/",
+    "display":"standalone",
+    "background_color":"#ffffff",
+    "theme_color":"#5B5EA6",
+    "orientation":"portrait",
+    "icons":[
+        {
+            "src":"/icons/logo.png",
+            "sizes":"192x192",
+            "type":"image/png"
+        },
+        {
+            "src":"/icons/logo2.png",
+            "sizes":"512x512",
+            "type":"image/png"
+        }
+    ]
+}
