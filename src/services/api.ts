@@ -1,3 +1,10 @@
+export interface Review {
+  id: number;
+  name: string;
+  text: string;
+  location: string;
+  featured?: boolean;
+}
 
 export const api = {
   getProducts: async () => {
@@ -42,4 +49,36 @@ export const api = {
 
     return res.json();
   },
+  
+  getReviews: async () => {
+  const res = await fetch("/api/reviews");
+
+  if (!res.ok) {
+    throw new Error("Failed to fetch reviews");
+  }
+
+  return res.json();
+},
+
+addReview: async (review: {
+  name: string;
+  text: string;
+  location: string;
+}) => {
+  const res = await fetch("/api/reviews", {
+    method: "POST",
+
+    headers: {
+      "Content-Type": "application/json",
+    },
+
+    body: JSON.stringify(review),
+  });
+
+  if (!res.ok) {
+    throw new Error("Failed to submit review");
+  }
+
+  return res.json();
+}
 };

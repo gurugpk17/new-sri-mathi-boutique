@@ -3,11 +3,15 @@ import { motion } from 'framer-motion';
 import { Quote, Star, Loader2, AlertCircle } from 'lucide-react';
 import { api, Review } from '../services/api';
 
+
 export default function Reviews() {
   const [reviews, setReviews] = useState<Review[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
+  const [name, setName] = useState("");
+  const [location, setLocation] = useState("");
+  const [text, setText] = useState("");
   useEffect(() => {
     const loadReviews = async () => {
       try {
@@ -22,6 +26,34 @@ export default function Reviews() {
     };
     loadReviews();
   }, []);
+
+  const handleSubmit = async (
+  e: React.FormEvent
+) => {
+
+  e.preventDefault();
+
+  try {
+
+    const newReview = await api.addReview({
+      name,
+      location,
+      text,
+    });
+
+    setReviews((prev) => [
+      newReview[0],
+      ...prev,
+    ]);
+
+    setName("");
+    setLocation("");
+    setText("");
+
+  } catch (err) {
+    console.log(err);
+  }
+};
 
   if (loading) {
     return (
@@ -98,6 +130,51 @@ export default function Reviews() {
           ))}
         </div>
       </section>
+
+      <section className="max-w-3xl mx-auto px-6 mt-32">
+  <h2 className="text-4xl font-serif mb-10 text-center">
+    Share Your Experience
+  </h2>
+
+  <form
+    onSubmit={handleSubmit}
+    className="space-y-6 bg-neutral-900 border border-gold/10 p-10"
+  >
+
+    <input
+      type="text"
+      placeholder="Your Name"
+      value={name}
+      onChange={(e) => setName(e.target.value)}
+      className="w-full bg-black border border-white/10 p-4"
+      required
+    />
+
+    <input
+      type="text"
+      placeholder="Location"
+      value={location}
+      onChange={(e) => setLocation(e.target.value)}
+      className="w-full bg-black border border-white/10 p-4"
+      required
+    />
+
+    <textarea
+      placeholder="Your Review"
+      value={text}
+      onChange={(e) => setText(e.target.value)}
+      className="w-full bg-black border border-white/10 p-4 min-h-[140px]"
+      required
+    />
+
+    <button
+      type="submit"
+      className="bg-gold text-black px-8 py-4 uppercase tracking-widest"
+    >
+      Submit Review
+    </button>
+  </form>
+</section>
     </main>
   );
 }
