@@ -1,5 +1,5 @@
 import type { VercelRequest, VercelResponse } from "@vercel/node";
-import { supabase } from "../src/services/supabase";
+import { supabase } from "./lib/supabase";
 
 async function getProductImages(folderName: string) {
   const { data, error } = await supabase.storage
