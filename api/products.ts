@@ -1,57 +1,64 @@
 import type { VercelRequest, VercelResponse } from "@vercel/node";
-import { supabase } from "./_lib/supabase";
 
 export default async function handler(
   req: VercelRequest,
   res: VercelResponse
 ) {
   try {
-    console.log("PRODUCTS API STARTED");
+    const supabaseUrl = process.env.SUPABASE_URL;
+    const supabaseKey = process.env.SUPABASE_ANON_KEY;
 
-    console.log("Testing Supabase Storage...");
-
-    const {
-      data,
-      error,
-    } = await supabase.storage
-      .from("sample")
-      .list("");
-
-    console.log("Storage response received");
-
-    if (error) {
-      console.error("STORAGE ERROR:", error);
-
+    if (!supabaseUrl || !supabaseKey) {
       return res.status(500).json({
         status: "error",
-        step: "storage",
-        message: error.message,
-        name: error.name,
-        statusCode: error.statusCode,
+        step: "environment",
+        url: !!supabaseUrl,
+        key: !!supabaseKey,
       });
     }
 
-    return res.status(200).json({
-      status: "ok",
-      storage: "healthy",
-      bucket: "sample",
-      itemCount: data?.length ?? 0,
-      items: data?.slice(0, 10).map((item) => ({
-        name: item.name,
-        id: item.id,
-        metadata: item.metadata,
-      })),
+    const url = `${supabaseUrl}/storage/v1/object/list/sample`;
+
+    console.log("Testing Storage URL:", url);
+
+    const response = await fetch(url, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${supabaseKey}`,
+        apikey: supabaseKey,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        prefix: "",
+        limit: 10,
+        offset: 0,
+        sortBy: {
+          column: "name",
+          order: "asc",
+        },
+      }),
+    });
+
+    const text = await response.text();
+
+    console.log("Storage HTTP status:", response.status);
+    console.log("Storage response:", text);
+
+    return res.status(response.status).json({
+      status: response.ok ? "ok" : "error",
+      storageStatus: response.status,
+      response: text,
     });
 
   } catch (error: any) {
-    console.error("PRODUCTS API CRASH:", error);
+    console.error("DIRECT STORAGE TEST FAILED:", error);
 
     return res.status(500).json({
       status: "error",
-      step: "runtime",
+      step: "network",
       message: error?.message || String(error),
       name: error?.name,
-      stack: error?.stack,
+      cause: error?.cause?.message || String(error?.cause || ""),
     });
   }
 }
