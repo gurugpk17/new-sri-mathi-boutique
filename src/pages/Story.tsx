@@ -34,7 +34,7 @@ export default function Story() {
           <div className="absolute -inset-4 border border-gold/10 transition-all duration-700 group-hover:inset-0" />
           <img 
             className="w-full aspect-[4/5] object-cover" 
-            src="https://lh3.googleusercontent.com/aida-public/AB6AXuBBicq3omhvgCgEJXz9jAez0UegAABKyRfnr-GkRhuHt0hPEael6Zsg4fwRSYC5Xc8vrkhbDXwuQDEQXj4bGgijHy3GQjc-61CIHzHDd-DqgtdMzUox4liBKyPZbCz4y1mq8D1z10mJWH9Ps0XA4_eND6fHrGQXTozQbz8_0FBrtOj7Qmc09awzXejSCysQbFqFNOWSVPKrJC9cy5KpTGJutj71DsYUZEzPtcWbcD4T7yRJB0JTqzRidjB6xi3Ji-_4T6daBKGtHoM" 
+            src="/icons/heritage.png" 
             alt="Heritage scene"
           />
         </div>
